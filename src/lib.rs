@@ -56,12 +56,24 @@ pub enum Metadata {
         notes: String,
         trn: String,
     },
+    Pot {
+        external_id: String,
+        ledger_insertion_id: String,
+        pot_account_id: String,
+        pot_deposit_id: String,
+        pot_id: String,
+        trigger: String,
+        user_id: String,
+    },
 }
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
-pub struct Counterparty {
-    pub account_number: String,
-    pub name: String,
-    pub sort_code: String,
-    pub user_id: String,
+pub enum Counterparty {
+    FasterPayment {
+        account_number: String,
+        name: String,
+        sort_code: String,
+        user_id: String,
+    },
+    Pot {},
 }
