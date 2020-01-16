@@ -49,7 +49,7 @@ pub struct Fees {}
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum Metadata {
-    FasterPayment {
+    FasterPaymentIncoming {
         faster_payment: String,
         fps_fpid: String,
         fps_payment_id: String,
@@ -57,7 +57,26 @@ pub enum Metadata {
         notes: String,
         trn: String,
     },
-    Pot {
+    FasterPaymentOutgoing {
+        action_code: String,
+        faster_payment: String,
+        faster_payment_initiator: String,
+        fps_fpid: String,
+        fps_payment_id: String,
+        insertion: String,
+        notes: String,
+        trn: String,
+    },
+    PotIncoming {
+        external_id: String,
+        ledger_insertion_id: String,
+        pot_account_id: String,
+        pot_id: String,
+        pot_withdrawal_id: String,
+        trigger: String,
+        user_id: String,
+    },
+    PotOutgoing {
         external_id: String,
         ledger_insertion_id: String,
         pot_account_id: String,
@@ -65,6 +84,15 @@ pub enum Metadata {
         pot_id: String,
         trigger: String,
         user_id: String,
+    },
+    P2PIncoming {
+        p2p_initiator: String,
+        p2p_transfer_id: String,
+    },
+    P2POutgoing {
+        notes: String,
+        p2p_initiator: String,
+        p2p_transfer_id: String,
     },
 }
 
@@ -75,6 +103,12 @@ pub enum Counterparty {
         account_number: String,
         name: String,
         sort_code: String,
+        user_id: String,
+    },
+    P2P {
+        account_id: String,
+        name: String,
+        preferred_name: String,
         user_id: String,
     },
     Pot {},
