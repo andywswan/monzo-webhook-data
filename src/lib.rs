@@ -47,6 +47,7 @@ pub struct Data {
 pub struct Fees {}
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
+#[serde(untagged)]
 pub enum Metadata {
     FasterPayment {
         faster_payment: String,
@@ -68,6 +69,7 @@ pub enum Metadata {
 }
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
+#[serde(untagged)]
 pub enum Counterparty {
     FasterPayment {
         account_number: String,
